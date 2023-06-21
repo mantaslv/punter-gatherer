@@ -34,6 +34,8 @@ data = pd.read_csv('./ForebetDatabase.csv')
 
 data['Date'] = pd.to_datetime(data['Date'], format='%d/%m/%Y %H:%M')
 
+data = data.where((pd.notnull(data)), None)
+
 data = data.sort_values(by='Date').reset_index(drop=True)
 
 for index, row in data.iterrows():
