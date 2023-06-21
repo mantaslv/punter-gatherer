@@ -33,9 +33,8 @@ cursor.execute(create_table_query)
 data = pd.read_csv('./ForebetDatabase.csv')
 
 data['Date'] = pd.to_datetime(data['Date'], format='%d/%m/%Y %H:%M')
-data = data.sort_values(by='Date')
 
-print(data)
+data = data.sort_values(by='Date').reset_index(drop=True)
 
 for index, row in data.iterrows():
     cursor.execute(f"INSERT INTO {table_name} VALUES %s", (tuple([index + 1] + list(row)),))
