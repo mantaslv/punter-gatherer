@@ -7,30 +7,30 @@ cursor = conn.cursor()
 
 table_name = "game_data"
 table_columns = (
-    "ID SERIAL PRIMARY KEY, "
-    "Comp TEXT, "
-    "HomeTeam TEXT, "
-    "AwayTeam TEXT, "
-    "Date TIMESTAMP, "
-    "HProb INTEGER, "
-    "DProb INTEGER, "
-    "AProb INTEGER, "
-    "XG FLOAT, "
-    "AllOdds TEXT, "
-    "Score TEXT, "
-    "HOdds FLOAT, "
-    "DOdds FLOAT, "
-    "AOdds FLOAT, "
-    "HScore INTEGER, "
-    "AScore INTEGER, "
-    "Result TEXT"
+    "id SERIAL PRIMARY KEY, "
+    "competition TEXT, "
+    "home_team TEXT, "
+    "away_team TEXT, "
+    "game_date TIMESTAMP, "
+    "home_prob INTEGER, "
+    "draw_prob INTEGER, "
+    "away_prob INTEGER, "
+    "xg FLOAT, "
+    "raw_odds TEXT, "
+    "raw_score TEXT, "
+    "home_odds FLOAT, "
+    "draw_odds FLOAT, "
+    "away_odds FLOAT, "
+    "home_score INTEGER, "
+    "away_score INTEGER, "
+    "result TEXT"
 )
 
 create_table_query = f"CREATE TABLE IF NOT EXISTS {table_name} ({table_columns});"
 
 cursor.execute(create_table_query)
 
-data = pd.read_csv('./ForebetDatabase.csv')
+data = pd.read_csv('./legacy/ForebetDatabase.csv')
 
 data['Date'] = pd.to_datetime(data['Date'], format='%d/%m/%Y %H:%M')
 
